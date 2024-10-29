@@ -1,16 +1,11 @@
-//your JS code here. If required.
-const apiKey = "b55e2180d1903b459d72a0fa636c2003";
-
-const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
-
-const main = document.getElementsByClassName("main")[0];
-const getData = async() => {
-    const data = await fetch(apiurl + "london" + `&appid=${apiKey}`);
-    const json = await data.json();
-    console.log(json.weather[0].main)
-
-    const div = document.createElement('div');
-    div.textContent = "Current weather in London: " + `${json.weather[0].main}`
-    main.append(div)
-
+function get(){
+	const url=`https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=e467712b257e418838be97cc881a71de`;
+	fetch(url)
+	.then((response)=>response.json())
+	.then(data=>{
+		const res=document.getElementById("weatherData");
+		res.innerHTML=`Current weather in London: ${data.weather[0].main}`;
+	})
 }
+const button=document.getElementById("btn");
+button.addEventListener("click",get);
